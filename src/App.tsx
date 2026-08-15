@@ -68,6 +68,7 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [flipping, setFlipping] = useState(false);
   const [showPhotoHeart, setShowPhotoHeart] = useState(false);
+  const [showWishPopup, setShowWishPopup] = useState(false);
   const fwTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const fwAudioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -128,7 +129,9 @@ export default function App() {
     setWished(true);
     setWishTrigger(t => t + 1);
     setFireworksActive(true);
+    setShowWishPopup(true);
     setTimeout(() => setFireworksActive(false), 6000);
+    setTimeout(() => setShowWishPopup(false), 6500);
   };
 
   const page = PAGES[currentPage];
@@ -283,6 +286,38 @@ export default function App() {
           </button>
 
           <div className="footer-text">Made with ❤️ just for Nethmini</div>
+
+          {/* Wish Popup */}
+          <AnimatePresence>
+            {showWishPopup && (
+              <motion.div
+                className="wish-popup-overlay"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                onClick={() => setShowWishPopup(false)}
+              >
+                <motion.div
+                  className="wish-popup-card"
+                  initial={{ scale: 0.5, y: 60, opacity: 0 }}
+                  animate={{ scale: 1, y: 0, opacity: 1 }}
+                  exit={{ scale: 0.8, y: -40, opacity: 0 }}
+                  transition={{ type: 'spring', stiffness: 200, damping: 18 }}
+                  onClick={e => e.stopPropagation()}
+                >
+                  <motion.h2
+                    className="wish-popup-title"
+                    initial={{ opacity: 0, scale: 0.7 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.15, duration: 0.5, type: 'spring', stiffness: 160 }}
+                  >
+                    Cheers to 22! 🥂
+                  </motion.h2>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </>
       )}
     </>

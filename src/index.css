@@ -611,7 +611,99 @@ body {
 
 
 
+
+/* ========== Wish Popup ========== */
+.wish-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+.wish-popup-card {
+  position: relative;
+  background:
+    radial-gradient(ellipse at top left, rgba(255, 192, 203, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom right, rgba(196, 181, 253, 0.4) 0%, transparent 60%),
+    linear-gradient(160deg, #fff8fb 0%, #fdf4ff 50%, #fff5fb 100%);
+  border-radius: 32px;
+  padding: 36px 52px;
+  text-align: center;
+  width: min(440px, 88vw);
+  box-shadow:
+    0 0 0 3px rgba(255, 105, 180, 0.3),
+    0 0 0 6px rgba(196, 181, 253, 0.18),
+    0 30px 80px rgba(255, 20, 147, 0.3),
+    0 10px 32px rgba(0, 0, 0, 0.35);
+  cursor: default;
+  overflow: hidden;
+}
+
+/* Animated gradient border */
+.wish-popup-card::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 34px;
+  background: linear-gradient(90deg,
+    #ff69b4, #c084fc, #60a5fa, #fbbf24, #f472b6, #ff69b4);
+  background-size: 300% 100%;
+  animation: border-rotate 4s linear infinite;
+  z-index: -1;
+  opacity: 0.85;
+}
+
+.wish-popup-number {
+  font-size: clamp(52px, 14vw, 80px);
+  line-height: 1;
+  margin-bottom: 14px;
+  display: block;
+  filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.5));
+}
+
+.wish-popup-title {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(24px, 5.5vw, 36px);
+  background: linear-gradient(135deg, #ff1493, #9c27b0, #ff69b4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  filter: drop-shadow(0 0 12px rgba(255, 105, 180, 0.3));
+}
+
+.wish-popup-body {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(14px, 3vw, 19px);
+  color: #9d174d;
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+
+.wish-popup-emojis {
+  font-size: clamp(22px, 5vw, 32px);
+  letter-spacing: 6px;
+  margin-bottom: 18px;
+  animation: hearts-bounce 1.2s ease-in-out infinite;
+}
+
+.wish-popup-hint {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 11px;
+  color: rgba(157, 23, 77, 0.35);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
 /* ========== Wish Button ========== */
+
 .wish-btn {
   position: fixed;
   bottom: 26px;
