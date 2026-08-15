@@ -18,12 +18,21 @@ function launchConfetti() {
 export default function BirthdayAnimation({ onDone }: BirthdayAnimationProps) {
   useEffect(() => {
     launchConfetti();
-    const t = setTimeout(() => {
-      // Second burst
+    const t1 = setTimeout(() => {
       launchConfetti();
-      setTimeout(onDone, 1800);
     }, 2000);
-    return () => clearTimeout(t);
+    const t2 = setTimeout(() => {
+      launchConfetti();
+    }, 4000);
+    const t3 = setTimeout(() => {
+      launchConfetti();
+      setTimeout(onDone, 3000);
+    }, 6000);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
   }, [onDone]);
 
   const floatingEmojis = ['🎂', '💖', '🌸', '✨', '🎉', '💕', '🎁', '⭐', '🩷', '🎈'];
@@ -68,7 +77,7 @@ export default function BirthdayAnimation({ onDone }: BirthdayAnimationProps) {
           className="bday-anim-title"
           initial={{ opacity: 0, scale: 0.5, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 2.7, type: 'spring', stiffness: 130 }}
+          transition={{ delay: 0.35, duration: 0.7, type: 'spring', stiffness: 130 }}
         >
           Happy Birthday,
         </motion.h1>

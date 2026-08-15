@@ -87,7 +87,6 @@ export default function Fireworks({ active }: { active: boolean }) {
           fw.trail.push({ x: fw.x, y: fw.y });
           if (fw.trail.length > 8) fw.trail.shift();
 
-          // Draw trail
           fw.trail.forEach((pt, i) => {
             ctx.beginPath();
             ctx.arc(pt.x, pt.y, 1.5, 0, Math.PI * 2);
@@ -96,13 +95,12 @@ export default function Fireworks({ active }: { active: boolean }) {
           });
 
           fw.y += fw.vy;
-          fw.vy += 0.15; // gravity
+          fw.vy += 0.15;
 
           if (fw.vy >= -3 || fw.y < canvas.height * 0.35) {
             explode(fw);
           }
         } else {
-          // Draw particles
           fw.particles = fw.particles.filter(p => p.alpha > 0.02);
           fw.particles.forEach(p => {
             p.x += p.vx;
@@ -134,7 +132,6 @@ export default function Fireworks({ active }: { active: boolean }) {
       cancelAnimationFrame(animRef.current);
       if (intervalRef.current) clearInterval(intervalRef.current);
       window.removeEventListener('resize', resize);
-      // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
   }, [active]);

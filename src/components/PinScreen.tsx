@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { unlockAudio } from '../utils/audioContext';
 
 const CORRECT_PIN = '2004';
 
@@ -24,6 +25,7 @@ export default function PinScreen({ onSuccess }: PinScreenProps) {
   }, []);
 
   const handleChange = (idx: number, val: string) => {
+    unlockAudio(); // unlock audio on first user interaction
     const digit = val.replace(/\D/g, '').slice(-1);
     const next = [...digits];
     next[idx] = digit;
@@ -52,6 +54,7 @@ export default function PinScreen({ onSuccess }: PinScreenProps) {
   };
 
   const handleKeyDown = (idx: number, e: React.KeyboardEvent) => {
+    unlockAudio(); // keep unlocking on every key event
     if (e.key === 'Backspace' && !digits[idx] && idx > 0) {
       refs[idx - 1].current?.focus();
     }

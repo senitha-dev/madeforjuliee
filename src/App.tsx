@@ -69,6 +69,7 @@ export default function App() {
   const [flipping, setFlipping] = useState(false);
   const [showPhotoHeart, setShowPhotoHeart] = useState(false);
   const fwTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const fwAudioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     if (phase !== 'countdown') return;
@@ -95,6 +96,23 @@ export default function App() {
   }, [phase]);
 
   useEffect(() => () => { if (fwTimer.current) clearTimeout(fwTimer.current); }, []);
+
+  // Fireworks audio — plays public/fireworks.mp3 while fireworks are active
+  useEffect(() => {
+    if (fireworksActive) {
+      if (!fwAudioRef.current) {
+        fwAudioRef.current = new Audio('/fireworks.mp3');
+        fwAudioRef.current.volume = 0.7;
+      }
+      fwAudioRef.current.currentTime = 0;
+      fwAudioRef.current.play().catch(() => {});
+    } else {
+      if (fwAudioRef.current) {
+        fwAudioRef.current.pause();
+        fwAudioRef.current.currentTime = 0;
+      }
+    }
+  }, [fireworksActive]);
 
   const flipPage = useCallback(() => {
     if (flipping) return;

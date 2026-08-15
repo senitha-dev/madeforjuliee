@@ -608,47 +608,8 @@ body {
   text-shadow: 0 0 12px rgba(255, 105, 180, 0.6);
 }
 
-/* ========== Music Button ========== */
-.music-btn {
-  position: fixed;
-  bottom: 26px;
-  left: 26px;
-  z-index: 9999;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ff1493, #c2185b);
-  color: #fff;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  box-shadow: 0 4px 22px rgba(255, 20, 147, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
 
-.music-btn:hover {
-  transform: scale(1.12);
-  box-shadow: 0 6px 30px rgba(255, 20, 147, 0.8);
-}
 
-.music-btn.playing {
-  animation: pulse-music 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse-music {
-
-  0%,
-  100% {
-    box-shadow: 0 4px 22px rgba(255, 20, 147, 0.55);
-  }
-
-  50% {
-    box-shadow: 0 4px 44px rgba(255, 20, 147, 1), 0 0 70px rgba(255, 20, 147, 0.4);
-  }
-}
 
 /* ========== Wish Button ========== */
 .wish-btn {
