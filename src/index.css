@@ -104,13 +104,14 @@ body {
 /* ========== Message Card — Love Letter Design ========== */
 .message-card {
   position: fixed;
-  /* Right side of screen */
-  left: auto;
-  right: 3%;
+  /* Right column — starts well clear of the book's right edge */
+  left: 54%;
+  right: 2%;
   top: 50%;
   transform: translateY(-50%);
-  width: min(50vw, 680px);
-  max-height: 88vh;
+  width: auto;
+  max-width: 480px;
+  max-height: 78vh;
   overflow-y: auto;
   /* Layered gradient background */
   background:
@@ -189,12 +190,11 @@ body {
 .message-card p {
   margin: 0 0 2px;
   font-family: 'Pacifico', cursive;
-  font-size: clamp(26px, 5.8vw, 42px);
-  line-height: 1.8;
+  font-size: clamp(17px, 2.4vw, 26px);
+  line-height: 1.7;
   text-align: center;
   color: #9d174d;
   letter-spacing: 0.5px;
-  /* Subtle text shadow for depth instead of gradient clip */
   text-shadow: 0 1px 3px rgba(157, 23, 77, 0.15);
 }
 
@@ -219,9 +219,9 @@ body {
 /* ========== 3D Book — Left side ========== */
 .book-scene {
   position: fixed;
-  /* Left side of screen */
-  left: 22%;
-  top: 40%;
+  /* Centred within the left 46% of the screen */
+  left: 21%;
+  top: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
   perspective: 2400px;
@@ -282,8 +282,8 @@ body {
 
 .book {
   position: relative;
-  width: min(400px, 75vw);
-  height: min(550px, 65vh);
+  width: min(320px, 38vw);
+  height: min(450px, 60vh);
   transform-style: preserve-3d;
   transform: rotateY(-24deg) rotateX(4deg);
   filter:
@@ -646,8 +646,9 @@ body {
 .heart-btn {
   position: fixed;
   bottom: 26px;
-  left: 50%;
-  transform: translateX(-50%);
+  /* Sits between wish-btn and left edge */
+  left: 26px;
+  transform: none;
   z-index: 9999;
   padding: 12px 26px;
   border-radius: 999px;
@@ -764,14 +765,15 @@ body {
 /* ========== Footer ========== */
 .footer-text {
   position: fixed;
-  bottom: 6px;
+  /* Sits below the buttons, centered */
+  bottom: 4px;
   left: 50%;
   transform: translateX(-50%);
-  color: rgba(255, 182, 193, 0.38);
-  font-size: 11px;
+  color: rgba(255, 182, 193, 0.28);
+  font-size: 10px;
   font-family: 'Fredoka', sans-serif;
   letter-spacing: 1px;
-  z-index: 9998;
+  z-index: 9997;
   white-space: nowrap;
   pointer-events: none;
 }
@@ -1182,30 +1184,106 @@ body {
 }
 
 /* ==========================================
-   RESPONSIVE — stack vertically on mobile
+   RESPONSIVE — tablet / mobile
 ========================================== */
+
+/* ── Tablet (601px – 900px): single column, card on top ── */
 @media (max-width: 900px) {
 
-  /* Message card: back to top-center on mobile */
   .message-card {
     left: 50% !important;
     right: auto !important;
-    top: 1% !important;
+    top: 2% !important;
     transform: translateX(-50%) !important;
-    width: min(95vw, 500px) !important;
-    max-height: 38vh !important;
-    padding: 20px 24px 22px !important;
+    width: min(92vw, 480px) !important;
+    max-width: unset !important;
+    max-height: 36vh !important;
+    padding: 18px 22px 20px !important;
   }
 
-  /* Book: back to lower-center on mobile */
   .book-scene {
     left: 50% !important;
-    top: 62% !important;
-    transform: translate(-50%, -50%) !important;
+    top: auto !important;
+    bottom: 110px !important;
+    /* above the bottom buttons */
+    transform: translateX(-50%) !important;
   }
 
   .book {
-    width: min(280px, 75vw) !important;
-    height: min(380px, 55vh) !important;
+    width: min(260px, 72vw) !important;
+    height: min(360px, 46vh) !important;
+  }
+
+  /* Stack bottom buttons: heart left, wish right, footer centered below */
+  .heart-btn {
+    left: 12px !important;
+    bottom: 72px !important;
+    /* above footer */
+    font-size: 12px !important;
+    padding: 10px 16px !important;
+  }
+
+  .wish-btn {
+    right: 12px !important;
+    bottom: 72px !important;
+    font-size: 12px !important;
+    padding: 10px 16px !important;
+  }
+
+  .footer-text {
+    bottom: 52px !important;
+    /* above buttons row */
+  }
+}
+
+/* ── Mobile (≤ 600px): tighter single column ── */
+@media (max-width: 600px) {
+
+  .message-card {
+    left: 50% !important;
+    right: auto !important;
+    top: 2% !important;
+    transform: translateX(-50%) !important;
+    width: 96vw !important;
+    max-width: unset !important;
+    max-height: 32vh !important;
+    padding: 14px 16px 16px !important;
+    border-radius: 20px !important;
+  }
+
+  /* On small screens reduce font */
+  .message-card p {
+    font-size: clamp(16px, 5vw, 24px) !important;
+  }
+
+  .book-scene {
+    left: 50% !important;
+    top: auto !important;
+    bottom: 120px !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .book {
+    width: min(230px, 80vw) !important;
+    height: min(320px, 42vh) !important;
+  }
+
+  .heart-btn {
+    left: 8px !important;
+    bottom: 68px !important;
+    font-size: 11px !important;
+    padding: 9px 13px !important;
+  }
+
+  .wish-btn {
+    right: 8px !important;
+    bottom: 68px !important;
+    font-size: 11px !important;
+    padding: 9px 13px !important;
+  }
+
+  .footer-text {
+    bottom: 48px !important;
+    font-size: 9px !important;
   }
 }
