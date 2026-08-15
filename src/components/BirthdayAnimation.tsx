@@ -68,7 +68,7 @@ export default function BirthdayAnimation({ onDone }: BirthdayAnimationProps) {
           className="bday-anim-title"
           initial={{ opacity: 0, scale: 0.5, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.7, type: 'spring', stiffness: 130 }}
+          transition={{ delay: 0.35, duration: 2.7, type: 'spring', stiffness: 130 }}
         >
           Happy Birthday,
         </motion.h1>
