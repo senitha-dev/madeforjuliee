@@ -27,7 +27,7 @@ export default function BirthdayAnimation({ onDone }: BirthdayAnimationProps) {
     const t3 = setTimeout(() => {
       launchConfetti();
       setTimeout(onDone, 3000);
-    }, 2800);
+    }, 2500);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
