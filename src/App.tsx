@@ -106,7 +106,7 @@ export default function App() {
         fwAudioRef.current.volume = 0.7;
       }
       fwAudioRef.current.currentTime = 0;
-      fwAudioRef.current.play().catch(() => {});
+      fwAudioRef.current.play().catch(() => { });
     } else {
       if (fwAudioRef.current) {
         fwAudioRef.current.pause();
@@ -236,7 +236,7 @@ export default function App() {
                         {page.body && <p className="body-text">{page.body}</p>}
                         {/* Bottom script */}
                         {currentPage === 0 && (
-                          <p className="cover-script">~ with all my love ~</p>
+                          <p className="cover-script">~ Keep shining, always! ~</p>
                         )}
                       </>
                     )}
